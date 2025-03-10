@@ -1,11 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSAP Animation</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP Banner Scroll Animation</title>
 
-</body>
+    <!-- GSAP & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+
+    <style>
+      /* Global Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      /* Smooth Scrolling Wrapper */
+      .wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        overflow: hidden;
+      }
+
+      .banner-section {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        /* background-color: red; */
+      }
+
+      /* Banner Image */
+      .banner-image {
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        filter: brightness(0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+      }
+
+      /* Banner Text */
+      .banner {
+        position: fixed;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8vw;
+        font-weight: bold;
+        opacity: 1;
+        /* white-space: nowrap; */
+      }
+
+      /* Text Styling */
+      .text {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg, #ff4d4d, #ffcc00, #00ffcc, #008cff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 300% 300%;
+      }
+
+      /* Scroll Down Arrow */
+      .scroll-arrow {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 40px;
+        /* color: white; */
+        background: linear-gradient(45deg, #ff4d4d, #ffcc00, #00ffcc, #008cff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: 30;
+        cursor: pointer;
+        animation: bounce 1.5s infinite;
+      }
+
+      /* Bottom Section */
+      .bottom-section {
+        height: 50vh;
+        background: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        font-weight: bold;
+        overflow: hidden;
+      }
+
+      .parallax-section {
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        top: 0;
+        padding: 0 1rem;
+        transform-origin: center top;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .parallax-image {
+        height: 200vh;
+        width: 100%;
+        object-fit: cover;
+        will-change: transform;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .info-text-section{
+        height: 100%;
+        z-index: 3;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+      }
+
+      /* Arrow Animation */
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Wrapper -->
+    <div class="wrapper">
+      <div class="banner-section">
+        <h1 class="banner text">
+          Welcome To <br />
+          Parallax
+        </h1>
+        <img
+          src="./assets/images/banner.avif"
+          class="banner-image"
+          alt="Banner Image"
+        />
+        <!-- Scroll Down Arrow -->
+        <div class="scroll-arrow" id="scrollArrow">⬇</div>
+      </div>
+
+      <section class="parallax-section">
+        <img
+          class="parallax-image"
+          src="./assets/images/info.webp"
+          data-speed="auto"
+        />
+        <div class="info-text-section">
+            <h2>Elevate Your Online Experience with Our Interactive Web Design</h2>
+            <p>Transform your website into a dynamic, engaging space with smooth animations</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      // Initialize ScrollSmoother
+      ScrollSmoother.create({
+        wrapper: ".wrapper",
+        content: "body",
+        smooth: 2,
+        effects: true,
+      });
+
+      // Banner Animation (Scaling & Hiding on Scroll)
+      gsap.to(".banner", {
+        scale: 3,
+        opacity: 0,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // Text Entry Animation (Slide Down)
+      gsap.from(".text", {
+        y: -100,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+      });
+
+      // Gradient Text Animation
+      gsap.to(".text", {
+        backgroundPosition: "300% 0%",
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut",
+      });
+
+      // Scroll to Bottom on Arrow Click
+
+      document
+        .getElementById("scrollArrow")
+        .addEventListener("click", function () {
+          let section = document.querySelector(".parallax-section"); // Select the target section
+          let sectionMiddle = section.offsetTop + section.offsetHeight * 0.3; // Calculate the middle point
+
+          gsap.to(window, {
+            scrollTo: 100,
+            duration: 1.5,
+            ease: "power2.inOut",
+          });
+        });
+
+      // parallax section
+
+      gsap.from(".parallax-section", {
+        scale: 2 / 3,
+        scrollTrigger: {
+          trigger: ".parallax-section",
+          scrub: 2,
+          start: "top bottom", // Start zooming earlier
+          end: "top 20%", // End zooming before it exits the screen
+        },
+      });
+    </script>
+  </body>
 </html>

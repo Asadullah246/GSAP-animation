@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Animated Text</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .text {
+            font-size: 5vw;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff4d4d, #ffcc00, #00ffcc, #008cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text">Beautiful Text</h1>
+
+    <script>
+        gsap.to(".text", {
+            backgroundPosition: "300% 0%",
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html>
