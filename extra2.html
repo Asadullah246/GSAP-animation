@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Advanced Animation</title>
+    <!-- GSAP & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollSmoother.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; overflow-x: hidden; background-color: #111; color: white; }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 300vh; /* Extra height for scrolling */
+        }
+
+        .smooth-content {
+            overflow: hidden;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, #ff007f, #590fb7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            opacity: 0; /* Will be revealed by GSAP */
+        }
+
+        .hero-content h1 {
+            font-size: 5vw;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transform: translateY(50px);
+        }
+
+        .hero-content p {
+            font-size: 1.5vw;
+            margin-top: 10px;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .animated-box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: white;
+            opacity: 0.5;
+            border-radius: 20px;
+        }
+
+        .box1 { top: 10%; left: 10%; }
+        .box2 { top: 30%; right: 15%; }
+        .box3 { bottom: 20%; left: 30%; }
+        .box4 { bottom: 10%; right: 25%; }
+
+        .scroll-section {
+            height: 150vh;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        /* New Bottom Section */
+        .bottom-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            opacity: 0;
+            transform: translateY(100px);
+        }
+
+        .bottom-section h2 {
+            font-size: 4vw;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section p {
+            font-size: 1.8vw;
+            max-width: 600px;
+        }
+
+        .explore-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.5vw;
+            background: #ff007f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="smooth-content">
+
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Welcome to GSAP Magic</h1>
+                    <p>Experience smooth animations like never before</p>
+                </div>
+
+                <div class="animated-box box1"></div>
+                <div class="animated-box box2"></div>
+                <div class="animated-box box3"></div>
+                <div class="animated-box box4"></div>
+            </section>
+
+            <!-- Scroll-triggered Section -->
+            <section class="scroll-section">
+                Scroll Down to See the Magic 🎩✨
+            </section>
+
+            <!-- New Bottom Section -->
+            <section class="bottom-section">
+                <h2>Explore More Animations</h2>
+                <p>Discover how GSAP can transform your website with smooth, engaging animations.</p>
+                <button class="explore-btn">Get Started</button>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- GSAP & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollSmoother.min.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+// Smooth Scrolling
+ScrollSmoother.create({
+    wrapper: ".wrapper",
+    content: ".smooth-content",
+    smooth: 2,
+    effects: true,
+});
+
+// GSAP Timeline for Hero Section
+let heroTimeline = gsap.timeline();
+
+heroTimeline
+    .to(".hero-content h1", { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" })
+    .to(".hero-content p", { opacity: 1, y: 0, duration: 1, delay: -0.5, ease: "power3.out" })
+    .to(".animated-box", {
+        opacity: 1,
+        scale: 1.2,
+        rotation: 360,
+        stagger: 0.5,
+        duration: 2,
+        ease: "power1.inOut"
+    });
+
+// Floating Boxes Animation
+gsap.to(".animated-box", {
+    y: "random(-50,50)",
+    x: "random(-50,50)",
+    rotation: "random(-20,20)",
+    duration: 3,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+});
+
+// ScrollTrigger for Hero Section 
+gsap.to(".hero-section", {
+    scale: 1.2,
+    opacity: 0,
+    scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        pin: true,
+        onLeave: () => {
+            gsap.to(".bottom-section", { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+        }
+    }
+});
+        });
+
+
+    </script>
+
+</body>
+</html>
