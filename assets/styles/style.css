@@ -15,18 +15,12 @@ body {
 }
 
 /* Smooth Scrolling Wrapper */
-.wrapper {
-  /* position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden; */
-}
 
 .banner-section {
   height: 100vh;
   width: 100%;
   position: relative;
-  /* background-color: red; */
+
 }
 
 /* Banner Image */
@@ -50,7 +44,6 @@ body {
   font-size: 8vw;
   font-weight: bold;
   opacity: 1;
-  /* white-space: nowrap; */
 }
 
 /* Text Styling */
@@ -61,6 +54,7 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(45deg, #ff4d4d, #ffcc00, #00ffcc, #008cff);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 300% 300%;
@@ -169,7 +163,7 @@ body {
     justify-content: center;
     text-align: center;
     /* background: linear-gradient(45deg, #ff007f, #590fb7); */
-    background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+    /* background: linear-gradient(45deg, #0f0c29, #302b63, #24243e); */
     background: linear-gradient(45deg, #2e2b47, #3f2a7b, #32334d);
 
 
@@ -260,11 +254,10 @@ body {
 svg {
     width: 100%;
     display: block;
-    /* margin-top: 50vh;  */
   }
 
   text {
-    fill: url(#gradient); /* Apply the gradient to the text */
+    fill: url(#gradient);
     stroke: white;
     stroke-width: 2;
     font-size: 48px;
@@ -274,7 +267,6 @@ svg {
 
   .hero-content h1 , .hero-content p {
     opacity: 0;
-    /* transform: translateY(50px); */
     transition: opacity 0.6s ease-out, transform 0.4s ease-out;
     z-index: 10 !important;
   }
@@ -289,7 +281,7 @@ svg {
 .scroll-container {
     display: flex;
     gap: 30px;
-    width: 400vw; /* Adjust based on number of items */
+    width: 400vw;
     padding: 20px;
 }
 
@@ -316,7 +308,7 @@ svg {
     object-fit: cover;
     opacity: 0.6;
     filter: brightness(0.9);
-    /* z-index: -1; */
+
 }
 
 .section h1 {
@@ -340,7 +332,7 @@ svg {
     padding: 20px;
     padding-bottom: 30px;
     font-size: 16px;
-    opacity: 1; /* Initially hidden for animation */
+    opacity: 1;
     position: relative;
 
 }

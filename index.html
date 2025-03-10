@@ -3,16 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GSAP Banner Scroll Animation</title>
+    <title>Parallax</title>
 
-
-
-  <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
   <body>
     <!-- Main Wrapper -->
-   <div class="mainDiv">
-    <div class="wrapper">
+    <div class="main-section">
+      <div class="wrapper">
         <div class="banner-section">
           <h1 class="banner text">
             Welcome To <br />
@@ -39,93 +37,127 @@
                 Elevate Your Online Experience with Our Interactive Web Design
               </h2>
               <p class="description-text">
-                Transform your website into a dynamic, engaging space with smooth
-                animations
+                Transform your website into a dynamic, engaging space with
+                smooth animations
               </p>
             </div>
           </div>
         </section>
 
-          <!-- Hero Section -->
-          <section class="hero-section">
-            <div class="hero-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="hero-content">
+            <svg
+              width="100%"
+              height="200px"
+              viewBox="0 0 500 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Define gradient -->
+              <defs>
+                <linearGradient
+                  id="gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    style="stop-color: #ff007f; stop-opacity: 1"
+                  />
+                  <stop
+                    offset="100%"
+                    style="stop-color: #590fb7; stop-opacity: 1"
+                  />
+                </linearGradient>
+              </defs>
+              <text
+                id="softcrazy-text"
+                x="50%"
+                y="50%"
+                text-anchor="middle"
+                dominant-baseline="middle"
+              >
+                Parallax
+              </text>
+            </svg>
 
+            <h1>Our Interactive Web Design</h1>
+            <p>Experience smooth animations like never before</p>
+          </div>
 
-                <svg width="100%" height="200px" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Define gradient -->
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: #ff007f; stop-opacity: 1" />
-                        <stop offset="100%" style="stop-color: #590fb7; stop-opacity: 1" />
-                      </linearGradient>
-                    </defs>
-                    <text id="softcrazy-text" x="50%" y="50%" text-anchor="middle" dominant-baseline="middle">
-                        Parallax
-                    </text>
-                  </svg>
-
-
-                <h1>Our Interactive Web Design</h1>
-                <p>Experience smooth animations like never before</p>
-            </div>
-
-            <div class="animated-box box1">
-                <img src="./assets/images/cartoon1.png" class="cartoon-image" alt="" srcset="">
-            </div>
-            <div class="animated-box box2">
-                <img src="./assets/images/cartoon2.jpeg" class="cartoon-image" alt="" srcset="">
-            </div>
-            <div class="animated-box box3">
-                <img src="./assets/images/cartoon3.jpg" class="cartoon-image" alt="" srcset="">
-            </div>
-            <div class="animated-box box4">
-                <img src="./assets/images/cartoon4.webp" class="cartoon-image" alt="" srcset="">
-            </div>
+          <div class="animated-box box1">
+            <img
+              src="./assets/images/cartoon1.png"
+              class="cartoon-image"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="animated-box box2">
+            <img
+              src="./assets/images/cartoon2.jpeg"
+              class="cartoon-image"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="animated-box box3">
+            <img
+              src="./assets/images/cartoon3.jpg"
+              class="cartoon-image"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="animated-box box4">
+            <img
+              src="./assets/images/cartoon4.webp"
+              class="cartoon-image"
+              alt=""
+              srcset=""
+            />
+          </div>
         </section>
 
-
         <div class="scroll-wrapper">
-            <div class="scroll-container">
-                <div class="horizontal-s1 section">
-                    <img src="./assets/images/tech1.jpg" alt="Nature">
-                    <h1>Nature Vibes</h1>
-                    <p>Explore the beauty of the world.</p>
-                </div>
-                <div class="horizontal-s2 section">
-                    <img src="./assets/images/tech2.jpg" alt="City">
-                    <h1>Urban Life</h1>
-                    <p>Discover the energy of the city.</p>
-                </div>
-                <div class="horizontal-s3 section">
-                    <img src="./assets/images/tech3.jpeg" alt="Ocean">
-                    <h1>Ocean Waves</h1>
-                    <p>Feel the calmness of the sea.</p>
-                </div>
-                <div class="horizontal-s4 section">
-                    <img src="./assets/images/tech4.jpg" alt="Forest">
-                    <h1>Deep Forest</h1>
-                    <p>Get lost in nature’s wonders.</p>
-                </div>
-                <div class="horizontal-s5 section">
-                    <img src="./assets/images/tech5.jpg" alt="Forest">
-                    <h1>Deep Forest</h1>
-                    <p>Get lost in nature’s wonders.</p>
-                </div>
+          <div class="scroll-container">
+            <div class="horizontal-s1 section">
+              <img src="./assets/images/tech1.jpg" alt="Nature" />
+              <h1>Nature Vibes</h1>
+              <p>Explore the beauty of the world.</p>
             </div>
+            <div class="horizontal-s2 section">
+              <img src="./assets/images/tech2.jpg" alt="City" />
+              <h1>Urban Life</h1>
+              <p>Discover the energy of the city.</p>
+            </div>
+            <div class="horizontal-s3 section">
+              <img src="./assets/images/tech3.jpeg" alt="Ocean" />
+              <h1>Ocean Waves</h1>
+              <p>Feel the calmness of the sea.</p>
+            </div>
+            <div class="horizontal-s4 section">
+              <img src="./assets/images/tech4.jpg" alt="Forest" />
+              <h1>Deep Forest</h1>
+              <p>Get lost in nature’s wonders.</p>
+            </div>
+            <div class="horizontal-s5 section">
+              <img src="./assets/images/tech5.jpg" alt="Forest" />
+              <h1>Deep Forest</h1>
+              <p>Get lost in nature’s wonders.</p>
+            </div>
+          </div>
         </div>
 
         <!-- Footer -->
-<footer class="footer">
-    <h3>Made with ❤️ by  Parallax</h3>
-    <p>© 2025 All Rights Reserved</p>
-</footer>
-
-
+        <footer class="footer">
+          <h3>Made with ❤️ by Parallax</h3>
+          <p>© 2025 All Rights Reserved</p>
+        </footer>
       </div>
-   </div>
-
-
-
+    </div>
 
     <!-- GSAP & Plugins -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
